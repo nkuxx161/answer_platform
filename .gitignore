@@ -1,0 +1,13 @@
+# ignore MariaDB files.
+database/data/*
+database/log/*
+
+# ignore Nginx Logs
+nginx/log/*
+nginx/conf/conf.d/*.conf
+__pycache__/
+
+# ignore Django Static Files
+static/*
+
+django/.tox

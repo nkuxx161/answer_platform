@@ -1,0 +1,18 @@
+image: python:latest
+cache:
+  paths:
+    - pip-cache
+  key: $BACKEND_PROJECT_ID
+stages:
+  - backendlint
+lint:
+  tags:
+    - backend
+  stage: backendlint
+  script:
+    - export PIP_CACHE_DIR="pip-cache"
+    - pip install pylint==1.7.5 --quiet -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+    - pip install pylint-django --quiet -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+    - cd django/answerplatform
+    - pylint --rcfile=./.pylintrc students answerplatform --load-plugins=pylint_django --disable=all
+  allow_failure: true
